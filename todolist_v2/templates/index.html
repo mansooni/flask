@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>TO-DO</title>
+</head>
+<body>
+<h1>TO-DO</h1>
+<hr>
+<br>
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<h1>{{msg}}</h1>
+{% endif %}
+{% endwith %}
+
+<div>
+<form action="{{url_for('add')}}", method="POST">
+	<input type = 'text' name = 'todoitem'>
+</form>
+</div>
+<br>
+<ol>
+{% for i in todolist %}
+	<li><h3>&nbsp;&nbsp; {{i.content}}</h3></li>
+{% endfor %}
+</ol>
+<div>
+<form action="{{url_for('create')}}", method="POST">
+<input type = 'submit' name='id' value='Submit'>
+</form>
+</div>
+</body>
+</html>
