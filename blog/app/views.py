@@ -1,5 +1,7 @@
-from flask import render_template, request, redirect
-from app import app
+from flask import render_template, request, redirect, url_for
+from app import app, db
+from app.models import Blogpost
+from datetime import datetime
 
 @app.route('/')
 def index():
@@ -9,9 +11,11 @@ def index():
 def about():
 	return render_template('about.html')
 
-@app.route('/post')
-def post():
-	return render_template('post.html')
+@app.route('/post/<int:post_id>')
+def post(post_id):
+	post = Blogpost.query.filter_by(id=post_id).one()
+	date_posted = 'January 28, 2018'
+	return render_template('post.html', post=post, date_posted=date_posted)
 
 @app.route('/contact')
 def contact():
@@ -27,5 +31,9 @@ def addpost():
 	subtitle = request.form['subtitle']
 	author = request.form['author']
 	content = request.form['content']
+	
+	post = Blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now())
+	db.session.add(post)
+	db.session.commit()
 
-	return '<h1>Title : {}, Subtitle : {}, Author : {}, Content : {}</h1>'.format(title, subtitle, author, content)
+	return redirect(url_for('index'))

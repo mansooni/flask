@@ -8,8 +8,9 @@ class Blogpost(db.Model):
 	date_posted = db.Column(db.DateTime)
 	content = db.Column(db.Text)
 
-	def __init__(self, title, subtitle, author, content):
+	def __init__(self, title, subtitle, author, content, date_posted):
 		self.title = title
 		self.subtitle = subtitle
 		self.author = author
 		self.content = content
+		self.date_posted = date_posted
