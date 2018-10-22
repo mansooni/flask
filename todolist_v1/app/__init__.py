@@ -10,4 +10,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'thisistodolistexample'
 db=SQLAlchemy(app)
 
-from app import views,models
+from app import views,models,forms
