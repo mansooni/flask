@@ -5,7 +5,8 @@ from datetime import datetime
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	posts = Blogpost.query.order_by(Blogpost.date_posted.desc()).all()
+	return render_template('index.html', posts=posts)
 
 @app.route('/about')
 def about():
@@ -14,12 +15,9 @@ def about():
 @app.route('/post/<int:post_id>')
 def post(post_id):
 	post = Blogpost.query.filter_by(id=post_id).one()
-	date_posted = 'January 28, 2018'
-	return render_template('post.html', post=post, date_posted=date_posted)
+	
+	return render_template('post.html', post=post)
 
-@app.route('/contact')
-def contact():
-	return render_template('contact.html')
 
 @app.route('/add')
 def add():
