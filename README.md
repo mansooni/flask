@@ -15,3 +15,6 @@ This repository for practice to flask.
 
 ### blog
 [Building a Blog App With Flask and Flask-SQLAlchemy](https://www.youtube.com/watch?v=XHGpPCYmPvI&t=2113s) 참고
+
+### Flask-WTF
+https://prettyprinted.com - The Flask Extensions Course 강의 예제 
