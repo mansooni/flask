@@ -4,4 +4,5 @@ MONGODB_SETTINGS={
 }
 
 SECRET_KEY = 'twittercloneproject'
+UPLOADED_PHOTOS_DEST = 'photos'
 
