@@ -21,4 +21,6 @@ https://prettyprinted.com - The Flask Extensions Course 강의 예제
 
 ### Twitter_Clone
 https://prettyprinted.com - Engage! A Twitter Clone 강의 예제 
-(flask-SQLAlchemy,SQLite3 대신 Mongodb,docker, flask-Mongoengine 
+(flask-SQLAlchemy,SQLite3 대신 Mongodb,docker, flask-Mongoengine 사용)
+
+
