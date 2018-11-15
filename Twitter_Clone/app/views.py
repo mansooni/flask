@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, request
 from app import app, photos, login_manager
-from app.forms import RegisterForm, LoginForm
+from app.forms import RegisterForm, LoginForm, TweetForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import User
+from app.models import User, Tweet
 from flask_login import login_user, login_required, current_user, logout_user
 from datetime import datetime
 
@@ -46,7 +46,18 @@ def logout():
 
 @app.route('/timeline')
 def timeline():
-    return render_template('timeline.html')
+    form = TweetForm()
+    return render_template('timeline.html', form=form)
+
+@app.route('/post_tweet', methods=['POST'])
+@login_required
+def post_tweet():
+    form = TweetForm()
+    if form.validate():
+        tweet = Tweet(user_id=current_user.id, text=form.text.data, date_created=datetime.now()).save()
+        return redirect(url_for('timeline'))
+    return 'Something went wrong'
+
 
 @app.route('/register', methods=['GET','POST'])
 def register():

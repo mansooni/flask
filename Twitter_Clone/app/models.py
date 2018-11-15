@@ -13,3 +13,8 @@ class User(UserMixin, db.Document):
 @login_manager.user_loader
 def load_user(user_id):
     return User.objects(pk=user_id).first()
+
+class Tweet(db.Document):
+    user_id = db.ReferenceField(User)
+    text = db.StringField(max_length=140)
+    date_created = db.DateTimeField()
